@@ -1,5 +1,5 @@
 @api
-Feature: terms
-  Scenario: Create a term
+Feature: Login User
+  Scenario: Login with user
    Given I am logged in as a user with the "administrator" role
-   #When I am viewing a "Social Share" term with the name "myterm"
+   Then I should see the text "Products"

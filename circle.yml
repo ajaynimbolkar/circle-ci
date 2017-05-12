@@ -13,6 +13,7 @@ dependencies:
   pre: 
     - echo "date.timezone = UTC" > /opt/circleci/php/$(phpenv global)/etc/conf.d/timezone.ini
     - ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
+
     # Install Drush.
     - composer global require symfony/yaml:2.3.0
     - composer global require symfony/console:~2.7
@@ -20,8 +21,8 @@ dependencies:
     - composer global require behat/behat:^3.3
     - composer global require drush/drush:8.1.0
     #- composer global require pantheon-systems/terminus
-
     
+
     # Install Terminus.
     - git clone https://github.com/pantheon-systems/terminus.git $HOME/.drush/terminus
     - cd $HOME/.drush/terminus
@@ -32,8 +33,6 @@ dependencies:
     - cp pantheon.aliases.drushrc.php /home/ubuntu/.drush
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
 
-    #/home/ubuntu/d7-ci/bin/.terminus auth:login --machine-token=4aSYnZSzmzOFlz6DLwhhCNiS_D_A5DJiHmfecaI6ejtaL
-    - /home/ubuntu/circle-ci/bin/terminus auth:login --machine-token=4aSYnZSzmzOFlz6DLwhhCNiS_D_A5DJiHmfecaI6ejtaL
-    - /home/ubuntu/circle-ci/bin/terminus ssh-key:add ~/.ssh/id_rsa.pub
-
-
+    - ./vendor/bin/terminus auth:login --machine-token=nG1NAiHcroBCfJGYchGR3Zs2jQCs5_0ZEzkoFFz5LPFXm
+    - ./vendor/bin/terminus ssh-key:add ~/.ssh/id_rsa.pub
+    - ssh-add -k ~/.ssh/id_rsa
