@@ -1,0 +1,45 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\DrushContext
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+      selenium2: ~
+      files_path: %paths.base%/files
+      #browser_name: chrome
+      base_url: 'http://aj-behat-igcommerce.pantheonsite.io'
+      #base_url: 'http://www.igcommerce.local'
+    kolev\MultilingualExtension:
+      default_language: en-us
+      translations: translations.yml
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: 'drush'
+      #drupal:
+        #drupal_root: C:\Users\AJain\Sites\devdesktop\igcommerce_dev_2017-04-02T23-00-00_UTC_code
+      #text:
+        #username_field: "Username"
+      drush:
+        alias: 'igcommerce.aj-behat'
+      region_map:
+        admin_menu : '#admin-menu'
+        navigation: '.region-navigation'
+        main: '.main-container'
+        panel_right: '.col-md-9'
+        panel_left: '.col-md-3'
+    #emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
+     # name: html
+     # renderer: Twig,Behat2
+     # file_name: index
+     # print_args: true
+     # print_outp: true
+     # loop_break: true
+   #formatters:
+    #html:
+    #  output_path: %paths.base%/build/html/behat

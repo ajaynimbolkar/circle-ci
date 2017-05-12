@@ -1,0 +1,39 @@
+machine:
+  environment:
+    PATH: "$HOME/.composer/vendor/bin:$PATH"
+  timezone:
+    UTC
+test:
+  pre:
+    #- mv behat.local.yml.sample behat.local.yml
+  override:
+    #- mkdir $CIRCLE_TEST_REPORTS/behat
+    - behat
+dependencies: 
+  pre: 
+    - echo "date.timezone = UTC" > /opt/circleci/php/$(phpenv global)/etc/conf.d/timezone.ini
+    - ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
+    # Install Drush.
+    - composer global require symfony/yaml:2.3.0
+    - composer global require symfony/console:~2.7
+    - composer global require symfony/dependency-injection:~2.7
+    - composer global require behat/behat:^3.3
+    - composer global require drush/drush:8.1.0
+    #- composer global require pantheon-systems/terminus
+
+    
+    # Install Terminus.
+    - git clone https://github.com/pantheon-systems/terminus.git $HOME/.drush/terminus
+    - cd $HOME/.drush/terminus
+    - curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php installer.phar install
+
+    #- composer update --no-dev
+    #- drush cc drush
+    - cp pantheon.aliases.drushrc.php /home/ubuntu/.drush
+    - export PATH="$HOME/.composer/vendor/bin:$PATH"
+    - cd /home/ubuntu/d7-ci/bin
+    #/home/ubuntu/d7-ci/bin/.terminus auth:login --machine-token=4aSYnZSzmzOFlz6DLwhhCNiS_D_A5DJiHmfecaI6ejtaL
+    - ./terminus auth:login --machine-token=4aSYnZSzmzOFlz6DLwhhCNiS_D_A5DJiHmfecaI6ejtaL
+    - ./terminus ssh-key:add ~/.ssh/id_rsa.pub
+
+
