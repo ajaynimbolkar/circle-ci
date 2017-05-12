@@ -33,7 +33,7 @@ dependencies:
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
 
     #/home/ubuntu/d7-ci/bin/.terminus auth:login --machine-token=4aSYnZSzmzOFlz6DLwhhCNiS_D_A5DJiHmfecaI6ejtaL
-    - ./vendor/bin/terminus auth:login --machine-token=4aSYnZSzmzOFlz6DLwhhCNiS_D_A5DJiHmfecaI6ejtaL
-    - ./vendor/bin/terminus ssh-key:add ~/.ssh/id_rsa.pub
+    - /home/ubuntu/circle-ci/bin/terminus auth:login --machine-token=4aSYnZSzmzOFlz6DLwhhCNiS_D_A5DJiHmfecaI6ejtaL
+    - /home/ubuntu/circle-ci/bin/terminus ssh-key:add ~/.ssh/id_rsa.pub
 
 
