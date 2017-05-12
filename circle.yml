@@ -35,4 +35,4 @@ dependencies:
 
     - ./vendor/bin/terminus auth:login --machine-token=nG1NAiHcroBCfJGYchGR3Zs2jQCs5_0ZEzkoFFz5LPFXm
     - ./vendor/bin/terminus ssh-key:add ~/.ssh/id_rsa.pub
-    - ssh-add -k ~/.ssh/id_rsa
+    #- ssh-add -k ~/.ssh/id_rsa
