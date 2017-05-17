@@ -19,8 +19,8 @@ dependencies:
     - composer global require symfony/console:~2.7
     - composer global require symfony/dependency-injection:~2.7
     - composer global require drush/drush:8.1.0
-    - composer global require drupal/drupal-extension: v3.2.2
-    - composer global require behat/behat: v3.1.0
+    - composer global require drupal/drupal-extension: 3.2.2
+    - composer global require behat/behat: ~3.1.0-rc2
     - composer global require kolev/multilingual-extension:^0.0.2
     #- composer global require pantheon-systems/terminus
     
