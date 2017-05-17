@@ -13,7 +13,7 @@ use kolev\MultilingualExtension\Context\MultilingualContext;
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext extends RawDrupalContext implements Context {
+class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext {
   
  /**
    * The $configFactory variable.
