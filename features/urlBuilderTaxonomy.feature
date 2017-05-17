@@ -1,4 +1,4 @@
-@javascript @api
+@api
 Feature: Testing actions performed after logging in.
   Scenario: Successful ECM login by valid user
     Given I am logged in as a user with the "administrator" role
