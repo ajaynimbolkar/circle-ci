@@ -12,8 +12,6 @@ test:
 dependencies: 
   pre:
     # Install site.
-    - echo "sendmail_path=/bin/true" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - echo "memory_limit=256M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - sudo cp circle/igcommerce.conf /etc/apache2/sites-available/default
     - sudo sed -e "s?%PROJECT_DIR%?$(pwd)/www?g" --in-place /etc/apache2/sites-available/default
     - sudo a2enmod rewrite
