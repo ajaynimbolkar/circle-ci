@@ -20,16 +20,16 @@ default:
       translations: translations.yml
     Drupal\DrupalExtension:
       blackbox: ~
-      api_driver: 'drush'
-      #drupal:
-        #drupal_root: C:\Users\AJain\Sites\devdesktop\igcommerce_dev_2017-04-02T23-00-00_UTC_code
+      api_driver: 'drupal'
+      drupal:
+        drupal_root: '/var/www/html/igcommerce'
       text:
         username_field: "Username"
         password_field: "Password"
         log_in: "Log in"
-      drush:
-        alias: 'igcommerce.aj-behat'
-        root: '/srv/bindings/1a785663631541a891a951603f6d27e9/code'
+      #drush:
+        #alias: 'igcommerce.aj-behat'
+        #root: '/srv/bindings/1a785663631541a891a951603f6d27e9/code'
       region_map:
         admin_menu : '#admin-menu'
         navigation: '.region-navigation'
