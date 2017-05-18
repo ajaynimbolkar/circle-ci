@@ -21,6 +21,7 @@ default:
     Drupal\DrupalExtension:
       blackbox: ~
       api_driver: 'drush'
+      root_path: '/srv/bindings/1a785663631541a891a951603f6d27e9/code'
       #drupal:
         #drupal_root: C:\Users\AJain\Sites\devdesktop\igcommerce_dev_2017-04-02T23-00-00_UTC_code
       text:
