@@ -12,6 +12,8 @@ test:
 dependencies: 
   pre:
     # Install site.
+    - echo "sendmail_path=/bin/true" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - echo "memory_limit=256M" >> /etc/php5/apache2/php.ini
     - sudo cp /home/ubuntu/circle-ci/circle/igcommerce.conf /etc/apache2/sites-available/default
     - sudo sed -e "s?%PROJECT_DIR%?$(pwd)/www?g" --in-place /etc/apache2/sites-available/default
     - sudo a2enmod rewrite
@@ -46,7 +48,7 @@ dependencies:
     - ./vendor/bin/terminus ssh-key:add ~/.ssh/id_rsa.pub
     #- ssh-add -k ~/.ssh/id_rsa
     # Install Drupal
-    sudo chmod -R 777 /var/www/html
+    - sudo chmod -R 777 /var/www/html
     - cd /var/www/html
     - mysql -uroot --password=""
     - ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
