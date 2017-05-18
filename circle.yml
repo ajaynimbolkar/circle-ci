@@ -14,8 +14,11 @@ dependencies:
     # Install site.
     #- echo "sendmail_path=/bin/true" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     #- echo "memory_limit=256M" >> /etc/php5/apache2/php.ini
+    - cd /etc/apache2/sites-available
+    - sudo touch igcommerce.conf
     - sudo cp /home/ubuntu/circle-ci/circle/igcommerce.conf /etc/apache2/sites-available/default
-    - sudo sed -e "s?%PROJECT_DIR%?$(pwd)/www?g" --in-place /etc/apache2/sites-available/default
+    - ln -s /etc/apache2/sites-available/igcommerce.conf/etc/apache2/sites-enabled/igcommerce.conf
+    - sudo sed -e "s?%PROJECT_DIR%?$/var/www/html/igcommerce?g" --in-place /etc/apache2/sites-available/default
     - sudo a2enmod rewrite
     - sudo service apache2 restart
     
@@ -50,8 +53,7 @@ dependencies:
     # Install Drupal
     - sudo chmod -R 777 /var/www/html
     - cd /var/www/html
-    - mysql -uroot --password=""
-    - ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+    - mysql -uroot --password="" -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';"
     - drush @pantheon.igcommerce.aj-behat sql-dump > /var/www/html/db_test.sql
     - mysql -uroot --password="" -e "CREATE DATABASE igcommerce CHARACTER SET utf8 COLLATE utf8_general_ci"
     - mysql -u root --password="" igcommerce < db_test.sql
