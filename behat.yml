@@ -29,7 +29,7 @@ default:
         log_in: "Log in"
       drush:
         alias: 'igcommerce.aj-behat'
-        root_path: '/srv/bindings/1a785663631541a891a951603f6d27e9/code'
+        root: '/srv/bindings/1a785663631541a891a951603f6d27e9/code'
       region_map:
         admin_menu : '#admin-menu'
         navigation: '.region-navigation'
