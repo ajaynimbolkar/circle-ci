@@ -38,6 +38,7 @@
   );
   $aliases['igcommerce.aj-behat'] = array(
     'uri' => 'aj-behat-igcommerce.pantheonsite.io',
+	'root' => '/srv/bindings/1a785663631541a891a951603f6d27e9/code',
     'db-url' => 'mysql://pantheon:a42bb17cb6f248dd8f9fa62c72ffbff7@dbserver.aj-behat.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6.drush.in:10559/pantheon',
     'db-allows-remote' => TRUE,
     'remote-host' => 'appserver.aj-behat.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6.drush.in',
