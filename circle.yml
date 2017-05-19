@@ -47,7 +47,7 @@ dependencies:
     - mysql -uroot --password="root" -e "CREATE DATABASE igcommerce CHARACTER SET utf8 COLLATE utf8_general_ci"
     - sudo sed -i '1d' /var/www/html/igcommerce.sql
     - mysql -u root -proot igcommerce < /var/www/html/igcommerce.sql
-    - git clone ssh://codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6@codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6.drush.in:2222/~/repository.git igcommerce ; cd igcommerce
+    - git clone ssh://codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6@codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6.drush.in:2222/~/repository.git /var/www/html/igcommerce
     
     # Install site.
     #- echo "sendmail_path=/bin/true" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
