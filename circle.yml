@@ -52,9 +52,8 @@ dependencies:
     #- echo "sendmail_path=/bin/true" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     #- echo "memory_limit=256M" >> /etc/php5/apache2/php.ini
     - cd /etc/apache2/sites-available
-    - sudo touch igcommerce.conf
-    - sudo cp /home/ubuntu/circle-ci/circle/igcommerce.conf /etc/apache2/sites-available/default
+    - sudo cp /home/ubuntu/circle-ci/circle/igcommerce.conf /etc/apache2/sites-available/igcommerce.conf
+    - sudo sed -e "s?%PROJECT_DIR%?/var/www/html/igcommerce?g" --in-place /etc/apache2/sites-available/igcommerce.conf
     - sudo ln -s /etc/apache2/sites-available/igcommerce.conf /etc/apache2/sites-enabled/igcommerce.conf
-    - sudo sed -e "s?%PROJECT_DIR%?$/var/www/html/igcommerce?g" --in-place /etc/apache2/sites-available/default
     - sudo a2enmod rewrite
     - sudo service apache2 restart
