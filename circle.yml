@@ -44,8 +44,8 @@ dependencies:
     - cd /var/www/html
     - mysql -uroot --password="" -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';"
     - drush @pantheon.igcommerce.aj-behat sql-dump > /var/www/html/igcommerce.sql
-    - sudo sed -i '1d' /var/www/html/igcommerce.sql
     - mysql -uroot --password="root" -e "CREATE DATABASE igcommerce CHARACTER SET utf8 COLLATE utf8_general_ci"
+    - sudo sed -i '1d' /var/www/html/igcommerce.sql
     - mysql -u root -p root igcommerce < /var/www/html/igcommerce.sql
     - git clone ssh://codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6@codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6.drush.in:2222/~/repository.git igcommerce ; cd igcommerce
     
