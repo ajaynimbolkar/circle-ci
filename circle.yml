@@ -8,6 +8,24 @@ test:
     #- mv behat.local.yml.sample behat.local.yml
   override:
     #- mkdir $CIRCLE_TEST_REPORTS/behat
+    # Install Drupal
+    - sudo chmod -R 777 /var/www/html
+    - cd /var/www/html
+    - mysql -uroot --password="" -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';"
+    - drush @pantheon.igcommerce.aj-behat sql-dump > /var/www/html/igcommerce.sql
+    - mysql -uroot --password="root" -e "CREATE DATABASE igcommerce CHARACTER SET utf8 COLLATE utf8_general_ci"
+    - mysql -u root -p root igcommerce < /var/www/html/igcommerce.sql
+    - git clone ssh://codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6@codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6.drush.in:2222/~/repository.git igcommerce ; cd igcommerce
+    
+    # Install site.
+    #- echo "sendmail_path=/bin/true" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    #- echo "memory_limit=256M" >> /etc/php5/apache2/php.ini
+    - cd /etc/apache2/sites-available
+    - sudo cp /home/ubuntu/circle-ci/circle/igcommerce.conf /etc/apache2/sites-available/igcommerce.conf
+    - sudo sed -e "s?%PROJECT_DIR%?/var/www/html/igcommerce?g" --in-place /etc/apache2/sites-available/igcommerce.conf
+    - sudo ln -s /etc/apache2/sites-available/igcommerce.conf /etc/apache2/sites-enabled/igcommerce.conf
+    - sudo a2enmod rewrite
+    - sudo service apache2 restart
     - behat
 dependencies: 
   pre:    
@@ -39,21 +57,4 @@ dependencies:
     - ./vendor/bin/terminus auth:login --machine-token=nG1NAiHcroBCfJGYchGR3Zs2jQCs5_0ZEzkoFFz5LPFXm
     - ./vendor/bin/terminus ssh-key:add ~/.ssh/id_rsa.pub
     #- ssh-add -k ~/.ssh/id_rsa
-    # Install Drupal
-    - sudo chmod -R 777 /var/www/html
-    - cd /var/www/html
-    - mysql -uroot --password="" -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';"
-    - drush @pantheon.igcommerce.aj-behat sql-dump > /var/www/html/igcommerce.sql
-    - mysql -uroot --password="root" -e "CREATE DATABASE igcommerce CHARACTER SET utf8 COLLATE utf8_general_ci"
-    - mysql -u root -p root igcommerce < /var/www/html/igcommerce.sql
-    - git clone ssh://codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6@codeserver.dev.d6b80a3c-1bf9-40b2-9fe3-8d8475a52bb6.drush.in:2222/~/repository.git igcommerce ; cd igcommerce
     
-    # Install site.
-    #- echo "sendmail_path=/bin/true" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    #- echo "memory_limit=256M" >> /etc/php5/apache2/php.ini
-    - cd /etc/apache2/sites-available
-    - sudo cp /home/ubuntu/circle-ci/circle/igcommerce.conf /etc/apache2/sites-available/igcommerce.conf
-    - sudo sed -e "s?%PROJECT_DIR%?/var/www/html/igcommerce?g" --in-place /etc/apache2/sites-available/igcommerce.conf
-    - sudo ln -s /etc/apache2/sites-available/igcommerce.conf /etc/apache2/sites-enabled/igcommerce.conf
-    - sudo a2enmod rewrite
-    - sudo service apache2 restart
