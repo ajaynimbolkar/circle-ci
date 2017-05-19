@@ -23,7 +23,6 @@ dependencies:
     #- composer global require behat/behat: ~3.1.0
     - composer global require kolev/multilingual-extension:^0.0.2
     #- composer global require pantheon-systems/terminus
-    -  perl -i -pe's/vendoe/./vendor/g' MultilingualContext.php
 
     # Install Terminus.
     - git clone https://github.com/pantheon-systems/terminus.git $HOME/.drush/terminus
@@ -35,7 +34,8 @@ dependencies:
     - cp pantheon.aliases.drushrc.php /home/ubuntu/.drush
     - cp languages_iso_codes.json ./vendor/kolev/multilingual-extension/src/Resources
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
-
+    - -  perl -i -pe's/vendoe/./vendor/g' MultilingualContext.php
+    
     - ./vendor/bin/terminus auth:login --machine-token=nG1NAiHcroBCfJGYchGR3Zs2jQCs5_0ZEzkoFFz5LPFXm
     - ./vendor/bin/terminus ssh-key:add ~/.ssh/id_rsa.pub
     #- ssh-add -k ~/.ssh/id_rsa
