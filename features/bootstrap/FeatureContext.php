@@ -354,6 +354,7 @@ public function iselectInTheSelect($option, $name) {
     // Here we can check the vocabulary.
      public function iShouldSeeLocalizedValueOfVocabularyInInputElement($value, $input) {
       $vocubalary = taxonomy_vocabulary_machine_name_load($value);
+	  print "<pre>";print_r($vocubalary);
       //$taxonomy_tree = taxonomy_get_tree($vocubalary->vid);
       $exceptionError = array();
       $taxonomy_tree = array(
