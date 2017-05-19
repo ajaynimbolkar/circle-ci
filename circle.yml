@@ -23,7 +23,7 @@ dependencies:
     #- composer global require behat/behat: ~3.1.0
     - composer global require kolev/multilingual-extension:^0.0.2
     #- composer global require pantheon-systems/terminus
-    
+    -  perl -i -pe's/vendoe/./vendor/g' MultilingualContext.php
 
     # Install Terminus.
     - git clone https://github.com/pantheon-systems/terminus.git $HOME/.drush/terminus
